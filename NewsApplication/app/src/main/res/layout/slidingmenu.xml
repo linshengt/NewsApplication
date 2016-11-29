@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#ff999999"
+    android:orientation="vertical" >
+
+    <com.jeremyfeinstein.slidingmenu.lib.SlidingMenu
+        android:id="@+id/slidingmenulayout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" >
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <RelativeLayout
+                android:background="@color/colorBackground"
+                android:layout_width="match_parent"
+                android:layout_height="200dp">
+
+                <com.linshengt.newsapplication.View.WaveView
+                    android:layout_alignParentBottom="true"
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp" />
+            </RelativeLayout>
+
+            <LinearLayout
+                android:layout_weight="1"
+                android:orientation="vertical"
+                android:background="@color/colorWhite"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <RelativeLayout
+                    android:clickable="true"
+                    android:id="@+id/item_collection"
+                    android:background="@drawable/selector_item_action"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <ImageView
+                        android:layout_marginLeft="15dp"
+                        android:background="@drawable/ic_star_grey600_48dp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" />
+                    <TextView
+                        android:layout_centerInParent="true"
+                        android:text="@string/CollectionNews"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" />
+
+                </RelativeLayout>
+                <TextView
+                    android:background="@color/colorLine"
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp" />
+                <RelativeLayout
+                    android:id="@+id/item_setting"
+                    android:clickable="true"
+                    android:background="@drawable/selector_item_action"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <ImageView
+                        android:layout_marginLeft="15dp"
+                        android:background="@drawable/ic_brightness_low_grey600_48dp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" />
+                    <TextView
+                        android:layout_centerInParent="true"
+                        android:text="@string/Setting"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" />
+
+                </RelativeLayout>
+                <TextView
+                    android:background="@color/colorLine"
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp" />
+                <RelativeLayout
+                    android:id="@+id/item_about"
+                    android:clickable="true"
+                    android:background="@drawable/selector_item_action"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <ImageView
+                        android:layout_marginLeft="15dp"
+                        android:background="@drawable/ic_group_grey600_48dp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" />
+                    <TextView
+                        android:layout_centerInParent="true"
+                        android:text="@string/about"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" />
+                </RelativeLayout>
+                <TextView
+                    android:background="@color/colorLine"
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp" />
+            </LinearLayout>
+
+
+        </LinearLayout>
+
+    </com.jeremyfeinstein.slidingmenu.lib.SlidingMenu>
+
+</LinearLayout>

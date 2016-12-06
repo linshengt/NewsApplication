@@ -34,4 +34,9 @@ public class NewsAdapter extends FragmentPagerAdapter {
         return list.size();
     }
 
+    @Override
+    public int getItemPosition(Object object) {
+        ((NewsContent)object).update();
+        return super.getItemPosition(object);
+    }
 }

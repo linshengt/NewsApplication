@@ -40,7 +40,7 @@ public class MainActivity extends FragmentActivity {
 
     private Context context;
     private List<String[]> newsItemList = new ArrayList<>();
-
+    private FragmentPagerAdapter adapter;
 
     @Override
     protected void onStart() {
@@ -56,14 +56,14 @@ public class MainActivity extends FragmentActivity {
         setContentView(R.layout.activity_main);
         findView();
         initData();
-
+        initView();
 
     }
 
     @Override
     protected void onResume() {
         super.onResume();
-        initView();
+        adapter.notifyDataSetChanged();
         HLog.i(TAG, "onResume");
     }
 
@@ -106,8 +106,8 @@ public class MainActivity extends FragmentActivity {
         });
 
         NewsItemDao newsItemDao = new NewsItemDao(context);
-        FragmentPagerAdapter adapter = new NewsAdapter(getSupportFragmentManager(), newsItemDao.getNewsItemList());
-        mViewPager.setOffscreenPageLimit(1);
+        adapter = new NewsAdapter(getSupportFragmentManager(), newsItemDao.getNewsItemList());
+        mViewPager.setOffscreenPageLimit(3);
         mViewPager.setAdapter(adapter);
         mViewPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
             @Override

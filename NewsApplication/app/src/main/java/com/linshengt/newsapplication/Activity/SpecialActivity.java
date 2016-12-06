@@ -93,9 +93,20 @@ public class SpecialActivity extends AppCompatActivity {
                 if(0 == newsItemInfoDao.getNewsCollectionByUrl(url)){
                     newsItemInfoDao.setNewsCollection(1, url);
                     mTitleBar.setImage_right(true);
+                    Intent mIntent = new Intent();
+                    Bundle bundle = new Bundle();
+                    bundle.putString("change01", "1");
+                    mIntent.putExtras(bundle);
+                    setResult(0, mIntent);
                 }else{
                     newsItemInfoDao.setNewsCollection(0, url);
                     mTitleBar.setImage_right(false);
+                    Intent mIntent = new Intent();
+                    Bundle bundle = new Bundle();
+                    bundle.putString("change01", "0");
+                    mIntent.putExtras(bundle);
+                    setResult(0, mIntent);
+
                 }
             }
         });

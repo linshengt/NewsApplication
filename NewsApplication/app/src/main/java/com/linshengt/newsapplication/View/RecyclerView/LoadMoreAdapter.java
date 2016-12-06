@@ -11,6 +11,7 @@ import android.widget.TextView;
 
 import com.linshengt.newsapplication.Catch.BitmapCache;
 import com.linshengt.newsapplication.R;
+import com.linshengt.newsapplication.Utils.PreferenceUtil;
 import com.linshengt.volley.RequestQueue;
 import com.linshengt.volley.toolbox.ImageLoader;
 import com.linshengt.volley.toolbox.Volley;
@@ -34,7 +35,7 @@ public class LoadMoreAdapter extends BaseLoadingAdapter<DesignItem>{
     public LoadMoreAdapter(RecyclerView recyclerView, CircularArray<DesignItem> ts, Context context) {
         super(recyclerView, ts);
         this.mDesignItems = ts;
-
+        this.context = context;
         this.mInflater = LayoutInflater.from(context);
         mQueue = Volley.newRequestQueue(context);
         mImageLoader = new ImageLoader(mQueue, new BitmapCache(context));
@@ -56,7 +57,20 @@ public class LoadMoreAdapter extends BaseLoadingAdapter<DesignItem>{
 
         ((BRViewHolder) holder).tv_title.setText(designItem.title);
         ((BRViewHolder) holder).tv_author.setText(designItem.author);
-
+        if(PreferenceUtil.readInt(context, "CustuomCheckBoxStatus") == 1){
+            ((BRViewHolder) holder).tv_title.setTextSize(10);
+            ((BRViewHolder) holder).tv_author.setTextSize(10);
+        }
+        else if(PreferenceUtil.readInt(context, "CustuomCheckBoxStatus") == 2){
+            ((BRViewHolder) holder).tv_title.setTextSize(12);
+            ((BRViewHolder) holder).tv_author.setTextSize(12);
+        }else if(PreferenceUtil.readInt(context, "CustuomCheckBoxStatus") == 3){
+            ((BRViewHolder) holder).tv_title.setTextSize(15);
+            ((BRViewHolder) holder).tv_author.setTextSize(15);
+        }else if(PreferenceUtil.readInt(context, "CustuomCheckBoxStatus") == 4){
+            ((BRViewHolder) holder).tv_title.setTextSize(18);
+            ((BRViewHolder) holder).tv_author.setTextSize(18);
+        }
         ImageLoader.ImageListener listener = ImageLoader.getImageListener(((BRViewHolder) holder).imageView, android.R.drawable.ic_menu_rotate, android.R.drawable.ic_delete);
         mImageLoader.get(designItem.imageUrl, listener, 200, 200);
 

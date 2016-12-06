@@ -13,6 +13,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.RelativeLayout;
 
 import com.linshengt.newsapplication.Activity.SpecialActivity;
@@ -26,6 +27,7 @@ import com.linshengt.newsapplication.View.RecyclerView.BaseLoadingAdapter;
 import com.linshengt.newsapplication.View.RecyclerView.DesignItem;
 import com.linshengt.newsapplication.View.RecyclerView.ItemClickListener;
 import com.linshengt.newsapplication.View.RecyclerView.LoadMoreAdapter;
+import com.linshengt.newsapplication.View.header.PtrMeiTuanHeader;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -51,6 +53,8 @@ public class NewsContent extends Fragment {
     private RecyclerView mRecyclerView;
     private NewsItemInfoDao newsItemInfoDao;
     private LoadNewsModel loadNewsModel;
+    private PtrMeiTuanHeader header;
+    private Button btnTop;
 
     public static NewsContent newInstance(String[] newsType) {
         NewsContent newFragment = new NewsContent();
@@ -83,9 +87,10 @@ public class NewsContent extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        setTextSize();
-        root =  inflater.inflate(R.layout.fragment_news_content, container, false);
-
+        if(root == null){
+            setTextSize();
+            root =  inflater.inflate(R.layout.fragment_news_content, container, false);
+        }
         findView();
         if(isFirstEnter == true){
             initData();
@@ -99,11 +104,21 @@ public class NewsContent extends Fragment {
     private void findView(){
         mRecyclerView = (RecyclerView) root.findViewById(R.id.recyclerView);
         mPtrFrame = (PtrFrameLayout) root.findViewById(R.id.view_pager_ptr_frame);
+        btnTop = (Button) root.findViewById(R.id.btnTop);
     }
 
     /*设置控件*/
     private void initView(){
         initRecycleView();
+        btnTop.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                mRecyclerView.scrollToPosition(0);
+            }
+        });
+        header = new PtrMeiTuanHeader(mContext);
+        mPtrFrame.setHeaderView(header);
+        mPtrFrame.addPtrUIHandler(header);
 
         mPtrFrame.setPtrHandler(new PtrDefaultHandler() {
             @Override
@@ -227,5 +242,9 @@ public class NewsContent extends Fragment {
         }else if(PreferenceUtil.readInt(mContext, "CustuomCheckBoxStatus") == 4){
             mContext.setTheme(R.style.SlargeTextSize);
         }
+    }
+    public void update(){
+        HLog.i(TAG, "update");
+        mAdapter.notifyDataSetChanged();
     }
 }

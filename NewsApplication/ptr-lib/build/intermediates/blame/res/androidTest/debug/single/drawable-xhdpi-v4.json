@@ -22,5 +22,9 @@
     {
         "merged": "G:\\Git\\android\\temp\\NewsApp\\ptr-lib\\build\\intermediates\\res\\merged\\androidTest\\debug\\drawable-xhdpi-v4\\ptr_rotate_arrow.png",
         "source": "G:\\Git\\android\\temp\\NewsApp\\ptr-lib\\build\\intermediates\\bundles\\debug\\res\\drawable-xhdpi-v4\\ptr_rotate_arrow.png"
+    },
+    {
+        "merged": "E:\\GitHub-Project\\NewsApplication\\NewsApplication\\ptr-lib\\build\\intermediates\\res\\merged\\androidTest\\debug\\drawable-xhdpi-v4\\ptr_rotate_arrow.png",
+        "source": "E:\\GitHub-Project\\NewsApplication\\NewsApplication\\ptr-lib\\build\\intermediates\\bundles\\debug\\res\\drawable-xhdpi-v4\\ptr_rotate_arrow.png"
     }
 ]

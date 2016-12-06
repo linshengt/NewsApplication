@@ -34,6 +34,7 @@ public class Collection extends AppCompatActivity {
     private Context mContext;
     private LoadMoreAdapter mAdapter;
     private CircularArray<DesignItem> mDatas;
+    private int position = 0;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -44,16 +45,16 @@ public class Collection extends AppCompatActivity {
 
         HLog.i(TAG, "onCreate-->1");
         findView();
-
+        HLog.i(TAG, "onCreate-->2");
+        initData();
+        HLog.i(TAG, "onCreate-->3");
+        initView();
     }
 
     @Override
     protected void onResume() {
         super.onResume();
-        HLog.i(TAG, "onCreate-->2");
-        initData();
-        HLog.i(TAG, "onCreate-->3");
-        initView();
+
     }
 
     private void findView(){
@@ -98,7 +99,9 @@ public class Collection extends AppCompatActivity {
                 Intent intent = new Intent(mContext, SpecialActivity.class);
                 NewsItemInfoDao newsItemInfoDao = new NewsItemInfoDao(mContext);
                 intent.putExtra("url", newsItemInfoDao.getNewsUrl(mDatas.get(postion).getTitle()));
-                startActivity(intent);
+//                startActivity(intent);
+                 position = postion;
+                startActivityForResult(intent,0);
             }
 
             @Override
@@ -148,4 +151,21 @@ public class Collection extends AppCompatActivity {
         }
     }
 
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+
+        if (data == null||"".equals(data)) {
+            return;
+        } else {
+            Bundle bundle = data.getExtras();
+            Log.e(TAG, "get bundle =" + bundle);
+            if (bundle != null) {
+                String filenameString = bundle.getString("change01");
+                Log.e(TAG, "change01= " + filenameString);
+                HLog.i(TAG, ""+position);
+            }
+        }
+
+
+    }
 }
